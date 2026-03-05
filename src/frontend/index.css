@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   BREW RESTAURANT — Warm Craft Brewery Aesthetic
+   Dark charcoal base, amber gold accents, cream text
+   ============================================================ */
+
+/* ── Playfair Display (Display Serif) ── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── General Sans (Body Sans) ── */
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Fraunces (Accent Serif) ── */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── Core Palette (dark-first brewery theme) ── */
+    /* Background: Deep charcoal #1a1410 */
+    --background: 0.14 0.012 50;
+    /* Foreground: Warm cream #f5f0e8 */
+    --foreground: 0.96 0.018 85;
+
+    /* Card: Slightly lighter charcoal */
+    --card: 0.18 0.014 50;
+    --card-foreground: 0.96 0.018 85;
+
+    --popover: 0.2 0.015 50;
+    --popover-foreground: 0.96 0.018 85;
+
+    /* Primary: Rich amber gold #c8860a */
+    --primary: 0.72 0.18 68;
+    --primary-foreground: 0.12 0.01 50;
+
+    /* Secondary: Muted bronze */
+    --secondary: 0.25 0.018 50;
+    --secondary-foreground: 0.88 0.015 80;
+
+    --muted: 0.22 0.016 50;
+    --muted-foreground: 0.6 0.02 70;
+
+    /* Accent: Warm amber highlight */
+    --accent: 0.28 0.025 55;
+    --accent-foreground: 0.92 0.02 80;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.28 0.02 55;
+    --input: 0.25 0.018 52;
+    --ring: 0.72 0.18 68;
+
+    /* Charts: warm amber palette */
+    --chart-1: 0.72 0.18 68;
+    --chart-2: 0.65 0.15 60;
+    --chart-3: 0.55 0.12 50;
+    --chart-4: 0.45 0.08 45;
+    --chart-5: 0.82 0.14 75;
+
+    /* Sidebar */
+    --sidebar: 0.16 0.013 50;
+    --sidebar-foreground: 0.96 0.018 85;
+    --sidebar-primary: 0.72 0.18 68;
+    --sidebar-primary-foreground: 0.12 0.01 50;
+    --sidebar-accent: 0.22 0.018 52;
+    --sidebar-accent-foreground: 0.92 0.02 80;
+    --sidebar-border: 0.28 0.02 55;
+    --sidebar-ring: 0.72 0.18 68;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--primary));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+  .font-accent {
+    font-family: "Fraunces", Georgia, serif;
+  }
+
+  /* Amber glow text */
+  .text-amber-glow {
+    color: oklch(var(--primary));
+    text-shadow: 0 0 40px oklch(var(--primary) / 0.3);
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Amber divider */
+  .divider-amber {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(var(--primary) / 0.5),
+      transparent
+    );
+  }
+
+  /* Hero text shadow */
+  .hero-text-shadow {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 0, 0, 0.5);
+  }
+}
